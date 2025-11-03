@@ -1,21 +1,27 @@
-# Last updated: 11/3/2025, 3:15:01 PM
-class Solution(object):
-    def removeDuplicates(self, nums):
+# Last updated: 11/3/2025, 4:43:42 PM
+class NumArray(object):
+
+    def __init__(self, nums):
         """
         :type nums: List[int]
+        """
+        self.numRange = [0]
+
+        for num in nums:
+            self.numRange.append(self.numRange[-1] + num)
+
+
+
+    def sumRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
         :rtype: int
         """
-        if not nums:
-            return 0
 
-        unique_nums = 0
-
-        for i in range(1, len(nums)):
-            if nums[i] != nums[unique_nums]:
-                unique_nums += 1 
-                nums[unique_nums] = nums[i]
-        return unique_nums + 1
+        return self.numRange[right+1] - self.numRange[left]
 
 
-
-
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
